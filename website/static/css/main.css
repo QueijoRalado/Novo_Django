@@ -6,7 +6,7 @@ body{
     height: 100%;
     margin: 0;
     font-family: 'Arvo', 'Crete Round', 'PT Serif', 'Volkhov', serif;
-    color: var(--cor-texto);
+    color: var(--cor-fundo);
     
 }
 
@@ -204,11 +204,12 @@ th, td {
 .botao-tema {
     background-color: var(--cor-destaque);
     color: white;
-    border: solid  var(--cor-texto) px ;
+    border: solid  var(--cor-destaque) ;
     padding: 10px 20px;
     cursor: pointer;
     font-weight: bold;
     margin: 20px;
+    border-radius: 20px;
 }
 .botao_criar_personagem{
     color: var(--cor-texto);
