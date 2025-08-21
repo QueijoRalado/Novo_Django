@@ -8,6 +8,5 @@ def home(request):
     return render(request,'index.html',{'slideshows':slideshows})    
     
 
-def contato(request):
-    nome='Vitor'
-    return render(request, 'contato.html', {'nome': nome})
+def mestres(request):
+    return render(request, 'mestres/index.html')
