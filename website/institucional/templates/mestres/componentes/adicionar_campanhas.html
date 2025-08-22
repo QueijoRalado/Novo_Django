@@ -1,0 +1,28 @@
+<!-- Modal -->
+<div class="modal fade" id="modalEditarCampanha" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalEditarCampanhaLabel">Editando Campanha...</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p><span id="campanhaId"></span></p>
+            <form id="formEditarCampanha">
+                <input type="text" id="imagemEditar" placeholder="Imagem da campanha (url)" >
+                <input type="text" id="nomeEditar" placeholder="Nome da campanha" required>
+                <textarea id="descricaoEditar" name="descricaoEditar" placeholder="Descrição"  rows="4" cols="50" required></textarea>
+                <input type="date" id="dataInicioEditar">
+                <input type="date" id="dataFimEditar">
+                
+            </form>                
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="salvarAlteracoes">Salvar</button>
+        </div>
+    </div>
+    </div>
+</div>
+<hr>
+<a href="adicionar.html"><h2 class="text-light text-center botao-tema">Adicionar Campanha</h2></a>
