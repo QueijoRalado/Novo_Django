@@ -8,10 +8,13 @@ class SlideshowModelAdmin(admin.ModelAdmin):
 
 
 
-
+class MestreAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'ativo')
 
 class PessoaModelAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email', 'data_nascimento')
 
 admin.site.register(Slideshow,SlideshowModelAdmin)    
 admin.site.register(Pessoa, PessoaModelAdmin)
+
+#admin.site.register(Mestre, MestreAdmin)

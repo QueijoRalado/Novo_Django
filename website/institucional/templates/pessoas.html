@@ -20,6 +20,7 @@
 </head>
 <body>
     <h1>Lista de Pessoas</h1>
+    <h2>{{pessoas}}</h2>
     {% if pessoas %}
         <table>
             <thead>
@@ -31,8 +32,9 @@
             </thead>
             <tbody>
                 {% for pessoa in pessoas %}
+                
                     <tr>
-                        <td><a href="{% url 'detalhe_pessoa' pessoa.id %}">{{ pessoa.nome }}</a></td>
+                        <td><a href="{% url 'pessoa_detalhe' pessoa.id %}">{{ pessoa.nome }}</a></td>
                         <td>{{ pessoa.email }}</td>
                         <td>{{ pessoa.data_nascimento|date:"d/m/Y" }}</td>
                     </tr>

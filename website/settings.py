@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'website.institucional.apps.InstitucionalConfig'
 ]
 
+# AUTH_USER_MODEL = 'institucional.Users'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
