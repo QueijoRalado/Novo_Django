@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'conteudo' %}
+<form action="{% url 'cadastro_adicionar'%} " method="post"> {% csrf_token %}
+        <!-- <form> {% csrf_token %} -->
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="lname">Last name:</label>
+    <input type="text" id="lname" name="lname"><br><br>
+    <input type="submit" value="Cadastrar" />
+    <!-- <button onclick="pegarnome();">ADANDlkM</button> -->
+  </form>
+
+    <script>
+    function pegarnome(){
+        nome = document.getElementById('fname').value;
+        console.log(nome);
+        alert(nome);
+        
+    }
+    
+</script>
+{% endblock %}
