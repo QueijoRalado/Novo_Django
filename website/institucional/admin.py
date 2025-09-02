@@ -20,16 +20,16 @@ class PessoaModelAdmin(admin.ModelAdmin):
 #admin.site.register(Mestre, MestreAdmin)
 
 class UsuarioModelAdmin(admin.ModelAdmin):
-    list_display = ('avatar_img','nickname', 'nome', 'email', 'cpf', 'telefone', 'data_nascimento', 'criado_em')
+    list_display = ( 'nome','avatar_img','nickname', 'email', 'data_nascimento', 'criado_em')
     #prepopulated_fields = {'slug': ('nickname','nome')}
 
     list_filter = ('criado_em', 'atualizado_em')
-    search_fields = ('nickname','nome', 'email', 'eh_mestre','eh_jogador','bio', 'cpf', 'telefone','ativo', )
+    search_fields = ('nickname','nome', 'email', 'eh_mestre','eh_jogador','bio','ativo', )
     ordering = ('nome','nickname')
     readonly_fields = ('criado_em', 'atualizado_em')
     fieldsets = (
         ('Informações Pessoais', {
-            'fields': ('avatar','nickname','nome', 'email','senha', 'eh_mestre','eh_jogador','bio', 'cpf', 'data_nascimento', 'telefone', 'endereco',)
+            'fields': ('avatar','nickname','nome', 'email','senha', 'eh_mestre','eh_jogador','bio', 'data_nascimento')
         }),
         ('Timestamps', {
             'fields': ('criado_em', 'atualizado_em'),
@@ -37,7 +37,7 @@ class UsuarioModelAdmin(admin.ModelAdmin):
         }),
     )
     def avatar_img(self,obj):
-        return format_html('<a href="{0}{1}" target="_blank"><img width="60px" src="{0}{1}" alt="foto da fachada" /></a>', settings.MEDIA_URL,obj.avatar)
+        return format_html('<a href="{0}{1}" target="_blank"><img width="60px" src="{0}{1}" alt="avatar" /></a>', settings.MEDIA_URL,obj.avatar)
     
     avatar_img.allow_tags = True
     avatar_img.short_description = 'Avatar'

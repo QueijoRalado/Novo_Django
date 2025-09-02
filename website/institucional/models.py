@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+import datetime
+
 # Create your models here.
 
 
@@ -50,16 +52,13 @@ class Usuario(models.Model):
     nickname = models.CharField(max_length=100)  
     email = models.EmailField(unique=True)
     data_nascimento = models.DateField(null=True, blank=True)
-    bio = models.TextField("Biografia", blank=True)
-    cpf = models.CharField(max_length=11, unique=True)       
-    telefone = models.CharField(max_length=20, blank=True)
-    endereco = models.TextField(blank=True)
+    bio = models.TextField("Biografia", blank=True)     
 
     eh_mestre = models.BooleanField(default=False)
     eh_jogador = models.BooleanField(default=False)
 
     senha = models.CharField(max_length=64, blank=False)
-
+                                    
     slug = models.SlugField('slug')
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
@@ -84,7 +83,6 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nickname
-                
 
 
 class Pessoa(models.Model):

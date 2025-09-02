@@ -1,7 +1,6 @@
-from django.shortcuts import render
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from website.institucional.models import Slideshow
-from .models import Pessoa
+from .models import Pessoa, Usuario
 from django.http import HttpResponse
 
 # Create your views here.
@@ -14,16 +13,30 @@ def cadastro(request):
 
 
 def cadastro_adicionar(request):
-   if request.method == 'POST':
-    field1_value = request.POST.get('fname')
-    field2_value = request.POST.get('lname')
+    if request.method == 'POST':
+        primeiroNome_value = request.POST.get('primeiroNome')
+        segundooNome_value = request.POST.get('segundoNome')
+        username_value = request.POST.get('username')
+        email_value = request.POST.get('email')
+        
+        print(primeiroNome_value)
+        print(segundooNome_value)
 
-    print(field1_value)
-    print(field2_value)
-    
-    #REALIZAR O PROCEDIMENTO PARA SALVAR
+        #ANTES DE SALVAR VERIFICAR SE O USUARIO JA EXISTE
+        novo_usuario_instancia = Usuario.objects.filter(email=email_value).filter(nickname=username_value)
+        print(novo_usuario_instancia)
 
-    return HttpResponse(f"<h1>Hello {field1_value} {field2_value}!</h1> <script>alert('deu certo')</script>")
+        if (novo_usuario_instancia):
+            return HttpResponse(f"<h1>Já EXITE {primeiroNome_value} {segundooNome_value}!</h1> <script>alert('JA EXISTE')</script>")
+        
+        
+        #REALIZAR O PROCEDIMENTO PARA SALVAR
+        novo_usuario_instancia = Usuario(nome = f'{primeiroNome_value} {segundooNome_value}',
+                                        nickname = username_value,
+                                        email = email_value)
+        novo_usuario_instancia.save()
+        return redirect('home')
+        #return HttpResponse(f"<h1>Hello {primeiroNome_value} {segundooNome_value}!</h1> <script>alert('Usuário cadastrado com sucesso')</script>")
         
 
 def mestres(request):
