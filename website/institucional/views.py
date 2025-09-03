@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from website.institucional.models import Slideshow
 from .models import Pessoa, Usuario
 from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.messages import constants
 
 # Create your views here.
 def home(request):
@@ -9,6 +11,7 @@ def home(request):
     return render(request,'index.html',{'slideshows':slideshows})   
 
 def cadastro(request):
+    messages.add_message(request, constants.SUCCESS, 'Página carregada com sucesso')
     return render(request,'cadastro.html') 
 
 
@@ -18,6 +21,14 @@ def cadastro_adicionar(request):
         segundooNome_value = request.POST.get('segundoNome')
         username_value = request.POST.get('username')
         email_value = request.POST.get('email')
+        senha_value = request.POST.get('senha')
+        senha2_value = request.POST.get('senha2')
+        if (senha_value!=senha2_value):
+            messages.add_message(request, constants.ERROR, 'SEU BOSTA')
+            return render(request,'cadastro.html') 
+
+            #return HttpResponse(f"<script>alert('Seu bosta!!!')</script>")
+        
         
         print(primeiroNome_value)
         print(segundooNome_value)
@@ -33,7 +44,8 @@ def cadastro_adicionar(request):
         #REALIZAR O PROCEDIMENTO PARA SALVAR
         novo_usuario_instancia = Usuario(nome = f'{primeiroNome_value} {segundooNome_value}',
                                         nickname = username_value,
-                                        email = email_value)
+                                        email = email_value,
+                                        senha = senha_value)
         novo_usuario_instancia.save()
         return redirect('home')
         #return HttpResponse(f"<h1>Hello {primeiroNome_value} {segundooNome_value}!</h1> <script>alert('Usuário cadastrado com sucesso')</script>")

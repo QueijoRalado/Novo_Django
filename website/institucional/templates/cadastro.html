@@ -3,6 +3,14 @@
 
 {% block 'conteudo' %}
 <div class="container">
+    {% if messages %}
+        {% for message in messages %}
+        <br>
+            <section class="alert {{message.tags}}">
+                {{message}}
+            </section>
+        {% endfor %}
+    {% endif %}    
   <form action="{% url 'cadastro_adicionar'%} " method="post"> {% csrf_token %}
       <div class="row g-3">
           <div class="col-sm-6">
@@ -22,21 +30,53 @@
           <div class="col-12">
               <label for="username" class="form-label">Nome de usuário</label> 
               <div class="input-group has-validation">
-                  <span class="input-group-text">@</span> <input type="text" class="form-control" name="username" id="username" placeholder="Username" required> 
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Username" required> 
                   <div class="invalid-feedback">
                       Your username is required.
                   </div>
               </div>
           </div>
-          <div class="col-12">
-              <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label> 
-              <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com"> 
-              <div class="invalid-feedback">
+          <div class="col-12 input-group has-validation">
+              <label for="email" class="form-label">Email <span class="text-body-secondary"></span></label> 
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span><input type="email" class="form-control" name="email" id="email" placeholder="seu_email@gmail.com"> 
+                <div class="invalid-feedback">
                   Please enter a valid email address for shipping updates.
-              </div>
+                </div>
+            </div>
+              
           </div>
           <div class="col-12">
-            <label for="avatar" class="form-label">Avatar <span class="text-body-secondary">(Optional)</span></label> <input type="file" class="form-control" id="avatar" placeholder="..."> 
+            <label for="senha" class="form-label">Senha <span class="text-body-secondary"></span></label> 
+            <input type="password" class="form-control" name="senha" id="senha" placeholder="Insira sua senha..."> 
+            <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="senha2" class="form-label">Confirmar senha <span class="text-body-secondary"></span></label> 
+            <input type="password" class="form-control" name="senha2" id="senha2" placeholder="Confirme sua senha..."> 
+            <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+            </div>
+        </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="eh_mestre" id="myCheckbox" value="option1">
+            <label class="form-check-label" for="myCheckbox">
+              Eh mestre
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="eh_jogador"  id="myCheckbox" value="option2">
+            <label class="form-check-label" for="myCheckbox">
+              Eh jogador
+            </label>
+          </div>
+          <div class="col-12">
+              <textarea  class="form-control" placeholder="Biografia..." name="bio" id="bio" cols="30" rows="10"></textarea>
+          </div>
+          <div class="col-12">
+            <label for="avatar" class="form-label">Avatar <span class="text-body-secondary">(Optional)</span></label> <input type="file" class="form-control" name="avatar" id="avatar" placeholder="..."> 
             <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
             </div>

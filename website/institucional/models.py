@@ -49,7 +49,7 @@ class Slideshow(models.Model):
 class Usuario(models.Model):
     avatar = models.ImageField(upload_to="avatar/", blank=True, null=True)
     nome = models.CharField(max_length=100)
-    nickname = models.CharField(max_length=100)  
+    nickname = models.CharField(max_length=100, unique=True)  
     email = models.EmailField(unique=True)
     data_nascimento = models.DateField(null=True, blank=True)
     bio = models.TextField("Biografia", blank=True)     
@@ -62,7 +62,6 @@ class Usuario(models.Model):
     slug = models.SlugField('slug')
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
-    ativo = models.BooleanField(default=True)
 
 
     def save(self, *args, **kwargs):
