@@ -17,22 +17,41 @@ def cadastro(request):
 
 def cadastro_adicionar(request):
     if request.method == 'POST':
+
         primeiroNome_value = request.POST.get('primeiroNome')
         segundooNome_value = request.POST.get('segundoNome')
         username_value = request.POST.get('username')
         email_value = request.POST.get('email')
         senha_value = request.POST.get('senha')
         senha2_value = request.POST.get('senha2')
+        eh_mestre_value = request.POST.get('eh_mestre')
+        eh_jogador_value = request.POST.get('eh_jogador')
+        bio_value = request.POST.get('bio')
+        avatar_value = request.POST.get('avatar')
+        data_nascimento_value = request.POST.get('data')
+        print(eh_mestre_value)
+        print(eh_jogador_value)
+        usuario_dados = {   
+                            'p_nome':primeiroNome_value,
+                            's_nome':segundooNome_value,
+                            'username':username_value,
+                            'email':email_value,
+                            'senha':senha_value,
+                            'mestre':  False if eh_mestre_value is None else True,
+                            'jogador': False if eh_jogador_value is None else True,
+                            'bio':bio_value,
+                            'avatar':avatar_value,
+                            'data':data_nascimento_value
+                        }                
         if (senha_value!=senha2_value):
             messages.add_message(request, constants.ERROR, 'SEU BOSTA')
-            return render(request,'cadastro.html') 
+            print(usuario_dados)
+            return render(request,'cadastro.html', {'usuario_dados':usuario_dados}) 
 
-            #return HttpResponse(f"<script>alert('Seu bosta!!!')</script>")
-        
-        
-        print(primeiroNome_value)
-        print(segundooNome_value)
 
+
+        #REALIZAR O PROCEDIMENTO PARA SALVAR
+      
         #ANTES DE SALVAR VERIFICAR SE O USUARIO JA EXISTE
         novo_usuario_instancia = Usuario.objects.filter(email=email_value).filter(nickname=username_value)
         print(novo_usuario_instancia)
@@ -45,7 +64,12 @@ def cadastro_adicionar(request):
         novo_usuario_instancia = Usuario(nome = f'{primeiroNome_value} {segundooNome_value}',
                                         nickname = username_value,
                                         email = email_value,
-                                        senha = senha_value)
+                                        senha = senha_value,
+                                        eh_mestre = eh_mestre_value,
+                                        eh_jogador = eh_jogador_value,
+                                        bio = bio_value,
+                                        avatar = avatar_value,
+                                        data_nascimento = data_nascimento_value)
         novo_usuario_instancia.save()
         return redirect('home')
         #return HttpResponse(f"<h1>Hello {primeiroNome_value} {segundooNome_value}!</h1> <script>alert('Usuário cadastrado com sucesso')</script>")
