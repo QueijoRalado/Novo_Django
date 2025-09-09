@@ -33,7 +33,7 @@ ul{
 }
 
 /* Essa parte serve para o menu mobile (funciona ao clicar no grimório) */
-@media (max-width: 768px) {
+@media (max-width: 2000px) {
     .nav-links {
         display: none;
         flex-direction: column;

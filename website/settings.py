@@ -46,7 +46,9 @@ INSTALLED_APPS = [
 ]
 
 # AUTH_USER_MODEL = 'institucional.Users'
-
+# AUTHENTICATION_BACKENDS = [
+#     'website.institucional.backends.UsuarioBackend',
+# ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -143,3 +145,7 @@ MESSAGE_TAGS = {
     constants.INFO: 'alert-info',
     constants.WARNING: 'alert-warning',
 }
+
+
+LOGIN_REDIRECT_URL = '/'   # Página após login
+LOGOUT_REDIRECT_URL = '/login/'  # Página após logout

@@ -4,6 +4,12 @@ from .models import Pessoa, Usuario
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.messages import constants
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.models import User
+from django.db import IntegrityError
+
 
 # Create your views here.
 def home(request):
@@ -16,6 +22,58 @@ def cadastro(request):
 
 
 def cadastro_adicionar(request):
+    if request.method == 'POST':
+        # Dados do formulário
+        primeiro_nome = request.POST.get('primeiroNome')
+        segundo_nome = request.POST.get('segundoNome')
+        nickname = request.POST.get('username')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        senha2 = request.POST.get('senha2')
+        eh_mestre = request.POST.get('eh_mestre') is not None
+        eh_jogador = request.POST.get('eh_jogador') is not None
+        bio = request.POST.get('bio')
+        avatar = request.FILES.get('avatar')  # arquivos vêm de request.FILES
+        data_nascimento = request.POST.get('data')
+
+        # Validação simples
+        if senha != senha2:
+            messages.error(request, 'As senhas não coincidem.')
+            return render(request, 'cadastro.html')
+
+        try:
+            # Cria o User padrão
+            user = User.objects.create_user(
+                username=username,
+                password=senha,
+                email=email,
+                first_name=primeiro_nome,
+                last_name=segundo_nome,
+            )
+
+            # Cria o perfil extendido (Usuario)
+            Usuario.objects.create(
+                user=user,
+                nome=f'{primeiro_nome} {segundo_nome}',
+                nickname=username,
+                email=email,
+                data_nascimento=data_nascimento,
+                bio=bio,
+                avatar=avatar,
+                eh_mestre=eh_mestre,
+                eh_jogador=eh_jogador,
+            )
+
+            messages.success(request, 'Cadastro realizado com sucesso!')
+            return redirect('login')  # ou onde quiser
+
+        except IntegrityError:
+            messages.error(request, 'Esse nome de usuário ou email já existe.')
+            return render(request, 'cadastro.html')
+
+    return render(request, 'cadastro.html')
+
+def cadastro_adicionar2(request):
     if request.method == 'POST':
 
         primeiroNome_value = request.POST.get('primeiroNome')
@@ -42,7 +100,9 @@ def cadastro_adicionar(request):
                             'bio':bio_value,
                             'avatar':avatar_value,
                             'data':data_nascimento_value
-                        }                
+                        }         
+        print(usuario_dados)
+        print()
         if (senha_value!=senha2_value):
             messages.add_message(request, constants.ERROR, 'SEU BOSTA')
             print(usuario_dados)
@@ -65,21 +125,70 @@ def cadastro_adicionar(request):
                                         nickname = username_value,
                                         email = email_value,
                                         senha = senha_value,
-                                        eh_mestre = eh_mestre_value,
-                                        eh_jogador = eh_jogador_value,
+                                        eh_mestre = usuario_dados['mestre'],
+                                        eh_jogador = usuario_dados['jogador'],
                                         bio = bio_value,
                                         avatar = avatar_value,
                                         data_nascimento = data_nascimento_value)
         novo_usuario_instancia.save()
-        return redirect('home')
+        return redirect('login')
         #return HttpResponse(f"<h1>Hello {primeiroNome_value} {segundooNome_value}!</h1> <script>alert('Usuário cadastrado com sucesso')</script>")
-        
+
+def login_adicionar(request):
+    if request.method == 'POST':
+    
+        email_value = request.POST.get('email')
+        senha_value = request.POST.get('senha')
+        print(senha_value,email_value)
+
+        novo_usuario_instancia = Usuario.objects.filter(email=email_value).filter(senha=senha_value)
+        if (novo_usuario_instancia):
+            return redirect('home')
+        else:
+            messages.add_message(request, constants.ERROR, 'SEU BOSTA, a senha e/ou email não conferem!')
+            return redirect('login')
+            
+
+
+
+
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        print(user)
+        if user is not None:
+            login(request, user)  # cria sessão de usuário
+            return redirect('home')
+        else:
+            messages.error(request, 'Usuário ou senha inválidos.')
+
+    return render(request, 'login.html')
+
+
+@login_required(login_url='login')  # protege a view para usuários logados
+def home_view(request):
+    return render(request, 'home.html', {'user': request.user})
+
+
+def logout_view(request):
+    logout(request)  # destrói a sessão
+    return redirect('login')
+
+
+
 
 def mestres(request):
     return render(request, 'mestres/index.html')
 
 def detalhes(request):
     return render(request, 'mestres/detalhesCampanha.html')
+
+def sessoes(request):
+    return render(request, 'mestres/sessoes .html')
 
 
 def jogadores(request):

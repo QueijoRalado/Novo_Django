@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password, check_password
+
 from django.utils.text import slugify
 import datetime
 
@@ -47,6 +49,8 @@ class Slideshow(models.Model):
 #         return self.user.nome
 
 class Usuario(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     avatar = models.ImageField(upload_to="avatar/", blank=True, null=True)
     nome = models.CharField(max_length=100)
     nickname = models.CharField(max_length=100, unique=True)  
@@ -57,12 +61,18 @@ class Usuario(models.Model):
     eh_mestre = models.BooleanField(default=False)
     eh_jogador = models.BooleanField(default=False)
 
-    senha = models.CharField(max_length=64, blank=False)
+    senha = models.CharField(max_length=128, blank=False)  # precisa aumentar o tamanho para hash
+
                                     
     slug = models.SlugField('slug')
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
 
+    def set_senha(self, raw_password):
+        self.senha = make_password(raw_password)
+    
+    def check_senha(self, raw_password):
+        return check_password(raw_password, self.senha)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -93,6 +103,9 @@ class Pessoa(models.Model):
         return self.nome
     
 
+
+
+        
 
 # from django.contrib.auth.models import AbstractUser
 
