@@ -42,13 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'website.institucional.apps.InstitucionalConfig',
+    'website.usuarios.apps.UsuariosConfig',
     'corsheaders'
+    
 ]
 
-# AUTH_USER_MODEL = 'institucional.Users'
-# AUTHENTICATION_BACKENDS = [
-#     'website.institucional.backends.UsuarioBackend',
-# ]
+AUTH_USER_MODEL = 'usuarios.Usuario'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

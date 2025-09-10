@@ -12,7 +12,7 @@
         {% endfor %}
     {% endif %}    
     {{usuario_dados}}
-  <form action="{% url 'cadastro_adicionar'%} " method="post"  enctype="multipart/form-data"> {% csrf_token %}
+  <form  method="post"  enctype="multipart/form-data"> {% csrf_token %}
       <div class="row g-3">
           <div class="col-sm-6">
               <label for="primeiroNome" class="form-label">Primeiro nome</label> 
@@ -93,6 +93,8 @@
       <button class="w-100 btn btn-primary btn-lg" type="submit">Salvar Contato</button> 
   </form>
 </div>
+<a href="{% url 'login' %}">Já tenho conta</a>
+
     <script>
     function pegarnome(){
         nome = document.getElementById('fname').value;
