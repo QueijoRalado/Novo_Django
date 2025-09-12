@@ -6,15 +6,14 @@ from django.contrib.auth.hashers import make_password
 
 Usuario = get_user_model()
 
-def registrar_usuario(request):
+def cadastrar_usuario(request):
     erro = None
     if request.method == "POST":
-        apelido = request.POST.get("apelido")
         username = request.POST.get("username")
         email = request.POST.get("email")
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
-        avatar = request.FILES.get("avatar")  # pega o arquivo
+        avatar_img = request.FILES.get("avatar")  # pega o arquivo
         bio = request.POST.get("bio")
 
         # 🔹 validações manuais
@@ -30,20 +29,17 @@ def registrar_usuario(request):
                 username=username,
                 email=email,
                 password=make_password(password1),
-                nickname = apelido,
-                #password=password1,
+                avatar =  avatar_img if avatar_img else "" ,                
                 bio=bio,
             )
 
-            if avatar:
-                user.avatar = avatar
             
             user.save()
 
             login(request, user)
-            return redirect("area_restrita")
+            return redirect('area_restrita')
 
-    return render(request, "registro.html", {"erro": erro})
+    return render(request, "cadastro.html", {"erro": erro})
 
 
 def login_usuario(request):
@@ -63,8 +59,7 @@ def login_usuario(request):
 
 
 def logout_usuario(request):
-    logout(request)
-    return redirect("login")
+    return redirect(request, "./index.html")
 
 
 @login_required

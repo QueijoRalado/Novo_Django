@@ -15,9 +15,9 @@ def home(request):
     slideshows = Slideshow.objects.all()
     return render(request,'index.html',{'slideshows':slideshows})   
 
-def cadastro(request):
-    messages.add_message(request, constants.SUCCESS, 'Página carregada com sucesso')
-    return render(request,'cadastro.html') 
+# def cadastro(request):
+#     messages.add_message(request, constants.SUCCESS, 'Página carregada com sucesso')
+#     return render(request,'cadastro.html') 
 
 
 # def cadastro_adicionar(request):

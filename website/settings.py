@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website.institucional.apps.InstitucionalConfig',
     'website.usuarios.apps.UsuariosConfig',
+    'website.area_administrativa.apps.AreaAdministrativaConfig',
     'corsheaders'
     
 ]
@@ -147,5 +148,6 @@ MESSAGE_TAGS = {
 }
 
 
-LOGIN_REDIRECT_URL = '/'   # Página após login
-LOGOUT_REDIRECT_URL = '/login/'  # Página após logout
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'area_restrita'
+LOGOUT_REDIRECT_URL = 'login'

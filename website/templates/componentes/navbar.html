@@ -1,14 +1,22 @@
 {% load static %}
 <nav>
-    <a href="{% url 'home' %}" target="_self"><img src="{% static 'img/d20_bonito.png' %}" alt="logo" class="dado20"></a>
+    <a href="{% url 'index' %}" target="_self"><img src="{% static 'img/d20_bonito.png' %}" alt="logo" class="dado20"></a>
     <ul class="nav-links">
-        <li><a href="{% url 'jogadores' %}">Login</a></li>
-        <li><a href="{% url 'jogadores' %}">Gregorio</a></li>
+        {% if user.username %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'mestres' %}" target="_self">Mestre</a></li>
+            <li><a href="{% url 'jogadores' %}">Jogador</a></li>
+        {% else %}
+            <li><a href="{% url 'jogadores' %}">Login</a></li>
+            <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+
+        {% endif %}
+        {% if user.username %}
+            <li><a href="{% url 'jogadores' %}"> {{ user.username }}!</p></a></li>
+        {% endif %}
         <!-- Vai ter uma verificação para checar se a pessoa está logada. Se ela estiver logada , exibirá as informaçoes abaixo-->
-        <li><a href="{% url 'mestres' %}" target="_self">Mestre</a></li>
-        <li><a href="{% url 'jogadores' %}">Jogador</a></li>
+
         
-        <li><a href="{% url 'jogadores' %}">Logout</a></li>
     </ul>
     
     <div class="menu-icon"><img class="grimoriobonito" src="{% static 'img/grimorio_bonito.png' %}" alt=""></div>
