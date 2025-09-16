@@ -37,7 +37,7 @@ def cadastrar_usuario(request):
             user.save()
 
             login(request, user)
-            return redirect('area_restrita')
+            return redirect('home_area_restrita')
 
     return render(request, "cadastro.html", {"erro": erro})
 
@@ -51,7 +51,7 @@ def login_usuario(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("area_restrita")
+            return redirect("home_area_restrita")
         else:
             erro = "Usuário ou senha inválidos."
 
@@ -59,9 +59,10 @@ def login_usuario(request):
 
 
 def logout_usuario(request):
-    return redirect(request, "./index.html")
+    logout(request)
+    return redirect(request, "home")
 
 
-@login_required
-def area_restrita(request):
-    return render(request, "area_restrita.html")
+# @login_required
+# def area_restrita(request):
+#     return render(request, "area_restrita.html")

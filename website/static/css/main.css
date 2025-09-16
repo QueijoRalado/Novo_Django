@@ -278,6 +278,9 @@ a:hover, a:active, .nav-link:hover, .nav-link:active{
 }
 
 label{
+    color: var(--cor-texto);    
+}
+
+span{
     color: var(--cor-texto);
-    
 }

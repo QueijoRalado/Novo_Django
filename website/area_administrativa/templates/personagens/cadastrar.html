@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'conteudo' %}
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+        <br>
+            <section class="alert {{message.tags}}">
+                {{message}}
+            </section>
+        {% endfor %}
+    {% endif %}    
+    {{usuario_dados}}
+<h2>Cadastrar Personagem</h2>
+{% if erro %}<p style="color:red;">{{ erro }}</p>{% endif %}
+  <form  method="post"  enctype="multipart/form-data"> {% csrf_token %}
+      <div class="row g-3">
+          <div class="col-12">
+              <label for="username" class="form-label">Nome do Personagem</label> 
+              <div class="input-group has-validation">
+                  <input type="text" class="form-control" name="username" id="username" value="{{usuario_dados.username}}" required> 
+                  <div class="invalid-feedback">
+                      Your username is required.
+                  </div>
+              </div>
+          </div>    
+          <div class="col-12 input-group has-validation">
+              <label for="email" class="form-label">Vida<span class="text-body-secondary"></span></label> 
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" name="email" id="email" value="{{usuario_dados.email}}"> 
+                <div class="invalid-feedback">
+                  Precisa de vida
+                </div>
+            </div>
+              
+          </div>
+          <div class="col-12">
+            <label for="senha" class="form-label">Classe (Opcional)<span class="text-body-secondary"></span></label> 
+            <input type="text" class="form-control" value="{{usuario_dados.senha}}" name="password1" id="senha"> 
+            <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="senha2" class="form-label">Raça (Opcional)<span class="text-body-secondary"></span></label> 
+            <input type="text" class="form-control" name="password2" id="senha2"> 
+            <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+            </div>
+        </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="eh_mestre"  id="myCheckboxMestre" {% if usuario_dados.mestre %}checked{% endif %} value="mestre">
+            <label class="form-check-label" for="myCheckboxMestre">
+              Estah morto?
+            </label>
+          </div>
+          <div class="col-12">
+                <label for="senha2" class="form-label" >Historia do personagem (Opcional)</label> 
+              <textarea  class="form-control"name="bio" id="bio" cols="30" rows="10"></textarea>
+          </div>
+          <div class="col-12">
+            <label for="avatar" class="form-label">Avatar (Opcional)</label> <input type="file" class="form-control" name="avatar" id="avatar"> 
+            <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+            </div>
+        </div>
+      </div>
+      <hr class="my-4">
+      <button class="w-100 btn btn-primary btn-lg" type="submit">Salvar Personagem</button> 
+
+  </form>
+</div>
+{% endblock %}
