@@ -1,1 +1,30 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block 'title' %}Meus Personagens::{{ user.username }}{% endblock %}
+{% block 'conteudo' %}
 <h1>MEUS PERSONAGENS</h1>
+
+<div class="container text-center">
+  <div class="row">
+    {% for p in personagens %}      
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+            <img src="{{p.avatar_personagem.url}}" class="card-img-top" alt="...">
+            <div class="card-body bg-info">
+                <h5 class="card-title">{{p.nome_personagem}}</h5>
+                <p class="card-text">{{p.historia}}</p>
+                <a href="#" class="btn btn-primary">Detalhes</a>
+            </div>
+        </div>
+    </div>
+    {% endfor%}
+  </div>
+</div>
+
+
+<button type="button" class="btn btn-primary">Cadastrar novo personagem</button>
+
+
+{% endblock %}

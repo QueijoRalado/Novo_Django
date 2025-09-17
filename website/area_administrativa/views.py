@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Personagem
 
 # Create your views here.
 # def home(request):
@@ -27,7 +28,8 @@ def jogadores(request):
 
 
 def meus_personagens(request):
-    return render(request, 'personagens/index.html')
+    meus_personagens = Personagem.objects.all().order_by('nome_personagem')
+    return render(request, 'personagens/index.html', {'personagens': meus_personagens})
 
 
 def cadastrar_personagem(request):

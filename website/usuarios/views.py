@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.urls import reverse
 
 Usuario = get_user_model()
 
@@ -59,8 +60,9 @@ def login_usuario(request):
 
 
 def logout_usuario(request):
-    logout(request)
-    return redirect(request, "home")
+    request.session.flush()
+    return redirect(reverse('home'))
+ 
 
 
 # @login_required
