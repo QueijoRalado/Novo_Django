@@ -15,7 +15,9 @@
             <div class="card-body bg-info">
                 <h5 class="card-title">{{p.nome_personagem}}</h5>
                 <p class="card-text">{{p.historia}}</p>
-                <a href="#" class="btn btn-primary">Detalhes</a>
+                <a href="{% url 'detalhes_personagem' p.id %}" class="btn btn-primary">Detalhes</a>
+                <a href="{% url 'editar_personagem' p.id %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'deletar_personagem' p.id %}" class="btn btn-danger">Deletar</a>
             </div>
         </div>
     </div>
@@ -24,7 +26,7 @@
 </div>
 
 
-<button type="button" class="btn btn-primary">Cadastrar novo personagem</button>
+<a href="{% url 'cadastrar_personagem' %}" class="btn btn-success mt-3">Cadastrar novo personagem</a>
 
 
 {% endblock %}

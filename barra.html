@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra</title>
+    <style>
+        .manuseio{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            font-size: x-large;
+        }
+        .barra{
+            width: 300px;
+            height: 30px;
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+        .barra .progresso{
+            background-color: red;
+            border-radius: 10px;
+            width: 100%;
+            height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="manuseio">
+        <button onclick="progressao(10,'-')">-10</button>
+        <button onclick="progressao(5,'-')">-5</button>
+        <button onclick="progressao(1,'-')">-</button>
+        <div class="barra">
+            <div class="progresso"></div>
+            <div class="numeral">100</div>
+        </div>
+        <button onclick="progressao(1,'+')">+</button>
+        <button onclick="progressao(5,'+')">+5</button>
+        <button onclick="progressao(10,'+')">+10</button>
+    </div>
+    
+
+    <script>
+        const progresso = document.querySelector('.barra .progresso')
+        let porcent = 220
+        let tag_div = document.querySelector('.numeral')
+        tag_div.innerText = porcent
+        total = porcent
+        function progressao(numero,sinal){
+
+            let mudanca = 0
+            if (sinal =='-'){
+                mudanca = porcent-numero
+            }else{
+                mudanca = porcent+numero
+            }
+            if(mudanca<0){
+                mudanca = 0;                
+            }else if (mudanca >total){
+                mudanca = total
+            }
+            let x = Math.round(mudanca*100/total) 
+            porcent=mudanca
+            progresso.setAttribute('style','width:'+ x +'%')
+            tag_div.innerText = porcent
+            
+            
+        }
+    </script>
+</body>
+</html>,

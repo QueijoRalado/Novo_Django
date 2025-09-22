@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block 'title' %}Editar Personagem{% endblock %}
+{% block 'conteudo' %}
+<h2>Editar Personagem</h2>
+    {% if messages %}
+        {% for message in messages %}
+        <br>
+            <section class="alert {{message.tags}}">
+                {{message}}
+            </section>
+        {% endfor %}
+    {% endif %}    
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label>Nome:</label><br>
+  <input type="text" name="nome_personagem" value="{{personagem.nome_personagem}}" required><br>
+  <label>Avatar:</label><br>
+  <input type="file" name="avatar_personagem"><br>
+  <label>Raça:</label><br>
+  <input type="text" name="raca" value="{{personagem.raca}}"><br>
+  <label>Classe:</label><br>
+  <input type="text" name="classe" value="{{personagem.classe}}"><br>
+  <label>História:</label><br>
+  <textarea name="historia">{{personagem.historia}}</textarea><br>
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+{% endblock %}

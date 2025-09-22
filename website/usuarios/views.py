@@ -46,17 +46,17 @@ def cadastrar_usuario(request):
 def login_usuario(request):
     erro = None
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-
-        user = authenticate(request, username=username, password=password)
+        nome = request.POST.get("username")
+        senha = request.POST.get("password")
+        user = authenticate(request, username=nome, password=senha)
+        print(user)
         if user is not None:
             login(request, user)
             return redirect("home_area_restrita")
         else:
             erro = "Usuário ou senha inválidos."
+            return render(request, "login.html", {"erro": erro})
 
-    return render(request, "login.html", {"erro": erro})
 
 
 def logout_usuario(request):

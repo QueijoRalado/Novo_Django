@@ -1,9 +1,12 @@
 from django.db import models
+from website.usuarios.models import Usuario
+ 
 
 # Create your models here.
 
 
 class Personagem(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING, blank = True, null = True)
     nome_personagem = models.CharField(verbose_name ="personagem",max_length=50, blank=False, null=False,)
     avatar_personagem = models.ImageField(verbose_name ="avatar", upload_to='personagens/')
     raca = models.CharField(verbose_name ="raça",max_length=50, blank=True, null=True,)

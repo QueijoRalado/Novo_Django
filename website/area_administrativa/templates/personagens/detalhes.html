@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block 'title' %}Detalhes do Personagem{% endblock %}
+
+{% block 'conteudo' %}
+<h2>{{personagem.nome_personagem}}</h2>
+<img src="{{personagem.avatar_personagem.url}}" alt="Avatar" width="200"><br>
+<p><strong>Raça:</strong> {{personagem.raca}}</p>
+<p><strong>Classe:</strong> {{personagem.classe}}</p>
+<p><strong>História:</strong> {{personagem.historia}}</p>
+<a href="{% url 'editar_personagem' personagem.id %}" class="btn btn-warning">Editar</a>
+<a href="{% url 'deletar_personagem' personagem.id %}" class="btn btn-danger">Deletar</a>
+<a href="{% url 'meus_personagens' %}" class="btn btn-secondary">Voltar</a>
+{% endblock %}

@@ -6,4 +6,5 @@ class PersonagemModelAdmin(admin.ModelAdmin):
     search_fields = ('nome_personagem',"raca", "classe")
 
 
+
 admin.site.register(Personagem,PersonagemModelAdmin)
