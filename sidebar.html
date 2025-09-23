@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box ;
+        }
+        body{
+            min-height: 100vh;
+            background-color: #e3e8f7;
+            display: flex;
+        }
+        main{
+            padding: 20px;
+        }
+        #sidebar{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #ffff;
+            height: 100vh;
+            border-radius: 0px 18px 18px 0px;
+        }
+        #sidebar_content{
+            padding: 12px;
+        }
+
+        #user{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        #user_avatar{
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        #user_infos{
+            display: flex;
+            flex-direction: column;
+        }
+
+        #side_items{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            list-style: none;
+        }
+        .side-item{
+            border-radius: 8px;
+            padding: 14px;
+            cursor: pointer;
+        }
+
+        .side-item.active{
+            background-color: #4f46e5;
+        }
+        .side-item:hover:not(.active),
+        #logout_btn:hover {
+            background-color: #e3e9f7;
+        }
+        .side-item a{
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a0a0a;
+            gap: 14px;
+        }
+        .side-item.active a{
+            color: #e3e9f7;
+        }
+        .side-item a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+        #logout{
+            border-top: 1px solid #e3e9f7;
+            padding: 12px;
+        }
+        #logout_btn{
+            border: none;
+            padding: 12px;
+            font-size: 14px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            border-radius: 8px;
+            text-align: start;
+            cursor: pointer;
+            background-color: transparent;
+        }
+        #open_btn{
+            position: absolute;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
+<body>
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="user">
+            <img  src="/media/1350478.jpeg" alt="avatar" id="user_avatar">
+            <p id="user_infos">
+                <span class="item-description">
+                    Luffy da Silva
+                </span>
+                <span class="item-description">
+                    O luva de borracha
+                </span>
+            </p>
+        </div>
+
+        <ul id="side_items">
+            <li class="side-item active">
+                <a href="#">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="item-description ">
+                        Inicio
+                    </span>
+                </a>
+            </li>
+
+            <li class="side-item">
+                <a href="#">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    <span class="item-description ">
+                        Campanhas
+                    </span>
+                </a>
+            </li>
+
+            <li class="side-item">
+                <a href="#">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span class="item-description ">
+                        Jogadores
+                    </span>
+                </a>
+            </li>
+            <li class="side-item">
+                <a href="#">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span class="item-description ">
+                        Configurações
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+        <button id="open_btn">
+            <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+        </button>
+        </div>
+
+        <div id="logout">
+            <button id="logout_btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="item-description">
+                    Logout
+                </span>
+            </button>
+        </div>
+    </nav>
+
+
+    <main>
+        <h1>Bem-Vindo</h1>
+    </main>
+    <script>
+
+    </script>
+</body>
+</html>
