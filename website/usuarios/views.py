@@ -16,8 +16,9 @@ def cadastrar_usuario(request):
         password2 = request.POST.get("password2")
         avatar_img = request.FILES.get("avatar")  # pega o arquivo
         bio = request.POST.get("bio")
+        data_nascimento = request.POST.get('data')
 
-        # 🔹 validações manuais
+        # validações manuais
         if not username or not email or not password1:
             erro = "Preencha todos os campos."
         elif password1 != password2:
@@ -25,13 +26,14 @@ def cadastrar_usuario(request):
         elif Usuario.objects.filter(username=username).exists():
             erro = "Esse nome de usuário já existe."
         else:
-            # 🔹 cria o usuário
+            # cria o usuário
             user = Usuario.objects.create_user(
                 username=username,
                 email=email,
-                password=make_password(password1),
+                password=password1,
                 avatar =  avatar_img if avatar_img else "" ,                
                 bio=bio,
+                data_nascimento=data_nascimento
             )
 
             
@@ -49,13 +51,13 @@ def login_usuario(request):
         nome = request.POST.get("username")
         senha = request.POST.get("password")
         user = authenticate(request, username=nome, password=senha)
-        print(user)
         if user is not None:
             login(request, user)
             return redirect("home_area_restrita")
         else:
             erro = "Usuário ou senha inválidos."
             return render(request, "login.html", {"erro": erro})
+    return render(request, "login.html")
 
 
 

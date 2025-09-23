@@ -17,6 +17,69 @@ nav{
     justify-content: space-between;
     border-bottom: 5px var(--cor-destaque) solid;
 }
+.entrada{
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+}
+.entrada h2{
+    font-size: xx-large;
+}
+.entrada p{
+    font-size: x-large;
+    width: 60%;
+    
+}
+
+.oqueRPG{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 40px;
+    font-size: x-large;
+    gap: 40px;
+    margin-bottom: 45px;
+
+}
+.oqueRPG img{
+    width: 600px;
+}
+.fichainfos{
+    display: flex;
+    flex-direction: column;
+
+}
+.fichainfos p{
+    padding: 20px;
+}
+@media (max-width: 1000px){
+    .entrada{
+        flex-direction: column;
+
+    }
+    .oqueRPG{
+        flex-direction: column;
+    }
+    .oqueRPG p{
+        width: 100%;
+        font-size: large;
+    }
+    .oqueRPG img{
+        width: 100%;
+    }
+}
+@media (min-width: 1001px) and (max-width: 1200px){
+    .entrada{
+        flex-direction: column;
+
+    }
+    .oqueRPG p{
+        width: 50%;
+        font-size: x-large;
+    }
+    .oqueRPG img{
+        width: 50%;
+    }
+}
 ul{
     display: flex;
     list-style: none;
@@ -54,6 +117,68 @@ ul{
         display: block;    
     }
  }
+
+
+
+
+ /* Parte da área restrita */
+
+ .perfil{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 40px;
+ }
+.perfil img{
+    border: 3px solid var(--cor-destaque);
+    border-radius: 100% ;
+    width: 300px;
+    
+}
+#corovenha{
+    background-color: transparent;
+    color: var(--cor-texto);
+    border-color: var(--cor-destaque);
+    font-size: x-large;
+    border-radius: 20px;
+}
+.coluna{
+    display: flex;
+    flex-direction: column;
+}
+.ascoisadele{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 30px;
+}
+@media (max-width: 1000px){
+    .perfil{
+        flex-direction: column;
+        align-items: center;
+    }
+    #corovenha{
+        width: 100%;
+    }
+}
+@media (min-width: 1001px) and (max-width: 1450px){
+    .perfil{
+        flex-direction: column;
+        align-items: center;
+    }
+    #corovenha{
+        width: 100%;
+    }
+}
+
+
+/* Essa parte serve para o menu mobile (funciona ao clicar no grimório) */
+@media (max-width: 2000px) {
+
+ }
+ /* Fim da área restrita */
+
+
+
 
 /* --- Aqui, nós mexemos com a página de campanhas ---*/
 

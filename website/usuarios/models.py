@@ -4,7 +4,7 @@ from django.db import models
 
 class Usuario(AbstractUser):
     # Campos adicionais, se quiser
-    bio = models.TextField(blank=True, null=True)
+
     avatar = models.ImageField(
         upload_to="avatar/",   # pasta dentro de MEDIA_ROOT
         blank=True,
@@ -12,7 +12,7 @@ class Usuario(AbstractUser):
     )
 
     data_nascimento = models.DateField(null=True, blank=True)
-    bio = models.TextField("Biografia", blank=True)     
+    bio = models.TextField(blank=True, null=True)    
 
     eh_mestre = models.BooleanField(default=False)
     eh_jogador = models.BooleanField(default=True)
