@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Personagem
+from .models import Personagem, Classe
 
 class PersonagemModelAdmin(admin.ModelAdmin):
     list_display = ['nome_personagem','avatar_personagem','raca','classe',]
@@ -8,3 +8,5 @@ class PersonagemModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Personagem,PersonagemModelAdmin)
+
+admin.site.register(Classe)

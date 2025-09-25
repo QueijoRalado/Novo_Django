@@ -14,23 +14,32 @@
     {{usuario_dados}}
 
 <h2>Cadastrar Personagem</h2>
-<form method="POST" enctype="multipart/form-data">
+<form class="formulario" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <input type="hidden" name="user" value={{user.username}}>
   <label>Nome:</label><br>
-  <input type="text" name="nome_personagem" required><br>
+  <input class="pergunta" type="text" name="nome_personagem" required><br>
   <label>Avatar:</label><br>
-  <input type="file" name="avatar_personagem" required><br>
+  <input class="pergunta" type="file" name="avatar_personagem" required><br>
   <label>Raça:</label><br>
-  <input type="text" name="raca"><br>
+  <input class="pergunta" type="text" name="raca"><br>
   <label>Classe:</label><br>
-  <input type="text" name="classe"><br>
+  
+
+  <label for="classe">Escolha a classe:</label>
+  <input list="classes" name="classe" id="browser"  autocomplete="off" >
+  <datalist id="classes">
+    {% for c in toda_classes %}
+      <option value="{{c.nome_classe}}">
+        {% empty %}
+        <option value="nao tem">
+
+    {% endfor %}
+  </datalist>
+<br>
   <label>História:</label><br>
-  <textarea name="historia"></textarea><br>
-      <label for="vol">Volume (between 0 and 50): PRECISA ADICIONAR O CAMPO VIDA NA MODELS E AJUSTAR TODO A INFORMAÇÃO PRA CADASTAR</label>
-    <input type="range" id="vol" name="vol" min="0" max="50">
-    https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range
-  <button type="submit" class="btn btn-primary">Cadastrar</button>
+  <textarea class="pergunta" name="historia"></textarea><br>
+  <button  type="submit" class="botao_criar_personagem">Cadastrar</button>
 </form>
 {% endblock %}
 {% comment %} 

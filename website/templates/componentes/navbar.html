@@ -4,8 +4,6 @@
     <ul class="nav-links">
         {% if user.username %}
             <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
-            <li><a href="{% url 'mestres' %}" target="_self">Mestre</a></li>
-            <li><a href="{% url 'jogadores' %}">Jogador</a></li>
             <li><a href="{% url 'meus_personagens' %}">Meus Personagens</a></li>
         {% else %}
             <li><a href="{% url 'accounts:login' %}">Login</a></li>

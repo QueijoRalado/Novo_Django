@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages import constants
-from .models import Personagem
+from .models import Personagem, Classe
 
 # Create your views here.
 # def home(request):
@@ -19,9 +19,11 @@ def home(request):
 @login_required
 def meus_personagens(request):
     meus_personagens = Personagem.objects.filter(usuario=request.user).order_by('nome_personagem')
+    if request.method == 'GET':
+        return render(request, 'personagens/index.html', {'personagens': meus_personagens,  'pesquisa': ''})
 
-    return render(request, 'personagens/index.html', {'personagens': meus_personagens})
-
+    meus_personagens = meus_personagens.filter(nome_personagem__icontains=request.POST.get('pesquisar_personagem'))    
+    return render(request, 'personagens/index.html', {'personagens': meus_personagens, 'pesquisa': request.POST.get('pesquisar_personagem')})
 
 @login_required
 def cadastrar_personagem(request):
@@ -29,20 +31,25 @@ def cadastrar_personagem(request):
         nome = request.POST.get('nome_personagem')
         avatar = request.FILES.get('avatar_personagem')
         raca = request.POST.get('raca')
-        classe = request.POST.get('classe')
+        var_classe = request.POST.get('classe')
         historia = request.POST.get('historia')
+
+        instancia_classe =  Classe.objects.get(nome_classe=var_classe)
 
         personagem = Personagem.objects.create(
             usuario=request.user,
             nome_personagem=nome,
             avatar_personagem=avatar,
             raca=raca,
-            classe=classe,
+            classe=instancia_classe,
             historia=historia
         )
         messages.success(request, f'Personagem {personagem.nome_personagem} cadastrado com sucesso!')
         return redirect('meus_personagens')
-    return render(request, 'personagens/cadastrar.html')
+        return HttpResponse('Oi')
+    
+    classes  = Classe.objects.all()
+    return render(request, 'personagens/cadastrar.html', {'toda_classes':classes })
 
 @login_required
 def editar_personagem(request, id):

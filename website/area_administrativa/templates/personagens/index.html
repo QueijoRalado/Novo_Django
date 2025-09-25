@@ -5,17 +5,22 @@
 {% block 'title' %}Meus Personagens::{{ user.username }}{% endblock %}
 {% block 'conteudo' %}
 <h1>MEUS PERSONAGENS</h1>
-
-<div class="container text-center">
+<div>
+  <form method="post"> {% csrf_token %}
+    <input type="text" placeholder="PESQUISAR" class="form-control" name="pesquisar_personagem" value="{{pesquisa}}">
+    <input type="submit" value="PESQUISAR">
+  </form>
+  </div>
+<div class="container text-center lista_personagens">
   <div class="row">
     {% for p in personagens %}      
     <div class="col">
       <div class="card" style="width: 18rem;">
             <img src="{{p.avatar_personagem.url}}" class="card-img-top" alt="...">
-            <div class="card-body bg-info">
+            <div class="card-body ">
                 <h5 class="card-title">{{p.nome_personagem}}</h5>
                 <p class="card-text">{{p.historia}}</p>
-                <a href="{% url 'detalhes_personagem' p.id %}" class="btn btn-primary">Detalhes</a>
+                <a href="{% url 'detalhes_personagem' p.id %}" class="btn btn-primary"><i class="bi bi-play"></i></a>
                 <a href="{% url 'editar_personagem' p.id %}" class="btn btn-warning">Editar</a>
                 <a href="{% url 'deletar_personagem' p.id %}" class="btn btn-danger">Deletar</a>
             </div>
@@ -23,10 +28,11 @@
     </div>
     {% endfor%}
   </div>
+  <a href="{% url 'cadastrar_personagem' %}" class="botao_criar_personagem">Cadastrar novo personagem</a>
 </div>
 
 
-<a href="{% url 'cadastrar_personagem' %}" class="btn btn-success mt-3">Cadastrar novo personagem</a>
+
 
 
 {% endblock %}
