@@ -7,8 +7,8 @@
 <h1>MEUS PERSONAGENS</h1>
 <div>
   <form method="post"> {% csrf_token %}
-    <input type="text" placeholder="PESQUISAR" class="form-control" name="pesquisar_personagem" value="{{pesquisa}}">
-    <input type="submit" value="PESQUISAR">
+    <input  id="pesquisa" type="text" placeholder="PESQUISAR" class="pergunta" name="pesquisar_personagem" value="{{pesquisa}}">
+    <input class="botao_criar_personagem" type="submit" value="PESQUISAR">
   </form>
   </div>
 <div class="container text-center lista_personagens">

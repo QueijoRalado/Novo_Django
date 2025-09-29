@@ -8,6 +8,9 @@ urlpatterns = [
     path('editar-personagem/<int:id>/', views.editar_personagem, name='editar_personagem'),
     path('detalhes-personagem/<int:id>/', views.detalhes_personagem, name='detalhes_personagem'),
     path('deletar-personagem/<int:id>/', views.deletar_personagem, name='deletar_personagem'),
+
+    path('minhas-campanhas/',views.minhas_campanhas, name='minhas_campanhas'),
+     path('cadastrar-campanha/', views.cadastrar_campanha, name='cadastrar_campanha'),
     
     path('mestres/',views.mestres, name='mestres'),
     path('mestres/detalhes',views.detalhes, name='detalhes'),

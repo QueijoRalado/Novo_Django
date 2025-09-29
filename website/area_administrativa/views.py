@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages import constants
-from .models import Personagem, Classe
+from .models import Personagem, Classe, Campanha
 
 # Create your views here.
 # def home(request):
@@ -46,7 +46,6 @@ def cadastrar_personagem(request):
         )
         messages.success(request, f'Personagem {personagem.nome_personagem} cadastrado com sucesso!')
         return redirect('meus_personagens')
-        return HttpResponse('Oi')
     
     classes  = Classe.objects.all()
     return render(request, 'personagens/cadastrar.html', {'toda_classes':classes })
@@ -79,6 +78,34 @@ def deletar_personagem(request, id):
         messages.success(request, f'Personagem {personagem.nome_personagem} deletado com sucesso!')
         return redirect('meus_personagens')
     return render(request, 'personagens/confirmar_exclusao.html', {'personagem': personagem})
+
+@login_required
+def minhas_campanhas(request):
+    minhas_campanhas = Campanha.objects.filter(mestre=request.user).order_by('nome_campanha')
+    return render(request, 'campanhas/index-campanhas.html', {'campanhas': minhas_campanhas})
+
+@login_required
+def cadastrar_campanha(request):
+    if request.method == 'POST':
+        nome_campanha = request.POST.get('nome_campanha')
+        if request.FILES.get('imagem_de_capa'):
+            img_capa = request.FILES.get('imagem_de_capa')
+        descricao = request.POST.get('descricao')
+        dt_inicio = request.POST.get('data_inicio')
+        dt_fim = request.POST.get('data_fim')
+        
+        campanha = Campanha.objects.create(
+            mestre=request.user,
+            nome_campanha=nome_campanha,
+            imagem_de_capa=img_capa,
+            descricao=descricao,
+            data_inicio=dt_inicio,
+            data_fim=dt_fim
+        )
+        messages.success(request, f'Campanha {campanha.nome_campanha} cadastrado com sucesso!')
+        return redirect('minhas_campanhas')
+    else:
+        return render(request, 'campanhas/cadastrar-campanha.html')
 
 
 def mestres(request):

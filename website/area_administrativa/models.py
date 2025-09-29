@@ -31,6 +31,22 @@ class Personagem(models.Model):
     def __str__(self):
         return self.nome_personagem
     
+class Campanha(models.Model):
+        mestre = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING, blank = True, null = True)
+        nome_campanha = models.CharField(verbose_name ="campanha",max_length=50, blank=False, null=False,)
+        imagem_de_capa = models.ImageField(verbose_name ="imagem", upload_to='campanhas/')
+        descricao = models.TextField(verbose_name ="descricao",max_length=50, blank=True, null=True,)
+        data_inicio = models.DateField(blank = False, null = False )
+        data_fim = models.DateField(blank=True, null= True)
+
+        class Meta:
+             verbose_name_plural = 'Campanhas'
+             verbose_name = 'Campanha'
+             ordering = ('nome_campanha',)
+
+        def __str__(self):
+             return self.nome_campanha
+    
 # , upload_to='slideshow/'
 
 

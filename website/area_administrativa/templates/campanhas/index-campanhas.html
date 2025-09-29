@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'title' %}Minhas Campanhas::{{ user.username }}{% endblock %}
+
+{% block 'conteudo' %}
+<h1>MINHAS CAMPANHAS</h1>
+<div>
+  <form method="post"> {% csrf_token %}
+    <input  id="pesquisa" type="text" placeholder="PESQUISAR" class="pergunta" name="pesquisar_personagem" value="{{pesquisa}}">
+    <input class="botao_criar_personagem" type="submit" value="PESQUISAR">
+  </form>
+  </div>
+<div class="container text-center lista_personagens">
+  <div class="row">
+    {% for c in campanhas %}      
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+            <img src="{{c.imagem_de_capa.url}}" class="card-img-top" alt="...">
+            <div class="card-body ">
+                <h5 class="card-title">{{c.nome_campanha}}</h5>
+                <p class="card-text">{{c.descricao}}</p>
+
+            </div>
+        </div>
+    </div>
+    {% endfor%}
+  </div>
+  <a href="{% url 'cadastrar_campanha' %}" class="botao_criar_personagem">Cadastrar nova campanha</a>
+</div>
+{% endblock %}
