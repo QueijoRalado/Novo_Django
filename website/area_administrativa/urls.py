@@ -10,7 +10,10 @@ urlpatterns = [
     path('deletar-personagem/<int:id>/', views.deletar_personagem, name='deletar_personagem'),
 
     path('minhas-campanhas/',views.minhas_campanhas, name='minhas_campanhas'),
-     path('cadastrar-campanha/', views.cadastrar_campanha, name='cadastrar_campanha'),
+    path('cadastrar-campanha/', views.cadastrar_campanha, name='cadastrar_campanha'),
+    path('excluir_campanha/<int:id>/', views.excluir_campanha, name='excluir_campanha'),
+    path('editar_campanha/<int:id>/', views.editar_campanha, name='editar_campanha'),
+    path('detalhes_campanha/<int:id>/', views.detalhes_campanha, name='detalhes_campanha'),
     
     path('mestres/',views.mestres, name='mestres'),
     path('mestres/detalhes',views.detalhes, name='detalhes'),

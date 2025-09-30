@@ -180,9 +180,6 @@ i.bi{
 
 
 /* Essa parte serve para o menu mobile (funciona ao clicar no grimório) */
-@media (max-width: 2000px) {
-
- }
  /* Fim da área restrita */
 
  /* Meus Personagens */
@@ -204,13 +201,42 @@ i.bi{
 .lista_personagens .card-body{
     background-color: var(--cor-destaque);
 }
+.personagem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.personagem img{
+    border: 3px solid var(--cor-destaque);
+    border-radius: 40px ;
+    width: 400px;
+}
+.numeral{
+    color: var(--cor-texto);
+}
  /* Fim Meus Personagens */
 
+ /* Minhas Campanhas */
+ .geral{
+    display: flex;
+ }
+ .campanha{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+ }
+ .campanha img{
+    border: 3px solid var(--cor-destaque);
+    border-radius: 40px ;
+    width: 400px;
+}
 
+ /* Minhas Campanhas */
 
 
 /* --- Aqui, nós mexemos com a página de campanhas ---*/
-
+/* 
 .anunciante_campanhas{
     text-align: center;
     text-decoration: underline;
@@ -234,7 +260,7 @@ i.bi{
 .campanhas .caixa_da_campanha button{
     width: 70px;
     text-decoration: underline white
-}
+} */
 
 /* --- Aqui temos a campanha individual, onde mostramos o título, a descrição, o ínico, o fim, e os players que participam da campanha tudo na mesma página --- */
 

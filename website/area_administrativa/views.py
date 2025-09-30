@@ -79,10 +79,17 @@ def deletar_personagem(request, id):
         return redirect('meus_personagens')
     return render(request, 'personagens/confirmar_exclusao.html', {'personagem': personagem})
 
+
+
 @login_required
 def minhas_campanhas(request):
     minhas_campanhas = Campanha.objects.filter(mestre=request.user).order_by('nome_campanha')
     return render(request, 'campanhas/index-campanhas.html', {'campanhas': minhas_campanhas})
+
+@login_required
+def detalhes_campanha(request, id):
+    campanha = get_object_or_404(Campanha, id=id)
+    return render(request, 'campanhas/detalhes_campanha.html', {'campanha': campanha})
 
 @login_required
 def cadastrar_campanha(request):
@@ -106,6 +113,30 @@ def cadastrar_campanha(request):
         return redirect('minhas_campanhas')
     else:
         return render(request, 'campanhas/cadastrar-campanha.html')
+    
+@login_required
+def excluir_campanha(request, id):
+    campanha = get_object_or_404(Campanha, id=id)
+    if request.method == 'POST':
+        campanha.delete()
+        messages.success(request, f'Campanha {campanha.nome_campanha} deletada com sucesso!')
+        return redirect('minhas_campanhas')
+    return render(request, 'campanhas/excluir_campanha.html', {'campanha': campanha})
+
+@login_required
+def editar_campanha(request, id):
+    campanha = get_object_or_404(Campanha, id=id)
+    if request.method == 'POST':
+        campanha.nome_campanha = request.POST.get('nome_campanha')
+        if request.FILES.get('imagem_de_capa'):
+            campanha.imagem_de_capa = request.FILES.get('imagem_de_capa')
+        campanha.data_inicio = request.POST.get('data_inicio')
+        campanha.data_fim = request.POST.get('data_fim')
+        campanha.descricao = request.POST.get('descricao')
+        campanha.save()
+        messages.success(request, f'Campanha {campanha.nome_campanha} atualizada com sucesso!')
+        return redirect('minhas_campanhas')
+    return render(request, 'campanhas/editar_campanha.html', {'campanha': campanha})
 
 
 def mestres(request):
