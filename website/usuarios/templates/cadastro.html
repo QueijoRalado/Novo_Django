@@ -14,77 +14,28 @@
     {{usuario_dados}}
 <h2>Registrar Usuário</h2>
 {% if erro %}<p style="color:red;">{{ erro }}</p>{% endif %}
-  <form  method="post"  enctype="multipart/form-data"> {% csrf_token %}
-      <div class="row g-3">
-          <div class="col-12">
-              <label for="username" class="form-label">Nome de usuário</label> 
-              <div class="input-group has-validation">
-                  <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="{{usuario_dados.username}}" required> 
-                  <div class="invalid-feedback">
-                      Your username is required.
-                  </div>
-              </div>
-          </div>    
-          <div class="col-12 input-group has-validation">
-              <label for="email" class="form-label">Email <span class="text-body-secondary"></span></label> 
-              <div class="input-group has-validation">
-                <span class="input-group-text">@</span><input type="email" class="form-control" name="email" id="email" value="{{usuario_dados.email}}" placeholder="seu_email@gmail.com"> 
-                <div class="invalid-feedback">
-                  Please enter a valid email address for shipping updates.
-                </div>
-            </div>
-              
-          </div>
-          <div class="col-12">
-            <label for="senha" class="form-label">Senha <span class="text-body-secondary"></span></label> 
-            <input type="password" class="form-control" value="{{usuario_dados.senha}}" name="password1" id="senha" placeholder="Insira sua senha..."> 
-            <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-            </div>
-        </div>
-        <div class="col-12">
-            <label for="senha2" class="form-label">Confirmar senha <span class="text-body-secondary"></span></label> 
-            <input type="password" class="form-control" name="password2" id="senha2" placeholder="Confirme sua senha..."> 
-            <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-            </div>
-        </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="eh_mestre"  id="myCheckboxMestre" {% if usuario_dados.mestre %}checked{% endif %} value="mestre">
-            <label class="form-check-label" for="myCheckboxMestre">
-              Eh mestre?
-            </label>
-          </div>
-          <div class="col-12">
-              <textarea  class="form-control" placeholder="Biografia..." name="bio" id="bio" cols="30" rows="10"></textarea>
-          </div>
-          <div class="col-12">
-            <label for="avatar" class="form-label">Avatar <span class="text-body-secondary">(Optional)</span></label> <input type="file" class="form-control" name="avatar" id="avatar" placeholder="..."> 
-            <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-            </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <label for="data" class="form-label">Data <span class="text-body-secondary">(Optional)</span></label> <input  type="date" class="form-control data" name="data" id="data" placeholder="..."> 
-        <div class="invalid-feedback">
-            Please enter a valid email address for shipping updates.
-        </div>
-      </div>
-      <hr class="my-4">
-      <button class="w-100 btn btn-primary btn-lg" type="submit">Salvar Contato</button> 
+  <form  method="post" class="formulario"  enctype="multipart/form-data"> {% csrf_token %}
+    <input type="hidden" name="user" value={{user.username}}>
+    <label>Username:</label><br>
+    <input type="text" class="pergunta" name="username" id="username" placeholder="Username" value="{{usuario_dados.username}}" required><br>
+    <label>Avatar:</label><br>
+    <input type="file" class="pergunta" name="avatar" id="avatar" placeholder="..."><br>
+    <label>Email:</label><br>
+    <input type="email" class="pergunta" name="email" id="email" value="{{usuario_dados.email}}" placeholder="seu_email@gmail.com"><br>
+    <label>Senha:</label><br>
+    <input type="password" class="pergunta" value="{{usuario_dados.senha}}" name="password1" id="senha" placeholder="Insira sua senha..."><br>
+    <label>Confirme sua senha:</label><br>
+    <input type="password" class="pergunta" name="password2" id="senha2" placeholder="Confirme sua senha..."><br>
+    <label>Eh mestre?:</label><br>
+    <input class="form-check-input" type="checkbox" name="eh_mestre"  id="myCheckboxMestre" {% if usuario_dados.mestre %}checked{% endif %} value="mestre"><br>
+    <textarea  class="pergunta" placeholder="Biografia..." name="bio" id="bio" cols="30" rows="10"></textarea><br>
+    <label for="data" class="form-label">Data</label><br>
+    <input  type="date" class="pergunta" name="data" id="data" placeholder="..."><br>
+    
+    <button class="botao-tema" type="submit">Salvar Contato</button> 
 
       <a href="{% url 'accounts:login' %}">Já tenho conta</a>
   </form>
 </div>
-
-    <script>
-    function pegarnome(){
-        nome = document.getElementById('fname').value;
-        console.log(nome);
-        alert(nome);
-        
-    }
-    
-</script>
 {% endblock %}
+

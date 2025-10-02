@@ -13,7 +13,9 @@ from .models import Personagem, Classe, Campanha
 
 @login_required
 def home(request):
-    return render(request, "index-area-restrita.html")
+    meus_personagens = Personagem.objects.filter(usuario=request.user).order_by('nome_personagem')
+    minhas_campanhas = Campanha.objects.filter(mestre=request.user).order_by('nome_campanha')
+    return render(request, "index-area-restrita.html", {'personagens': meus_personagens,'campanhas': minhas_campanhas})
 
 
 @login_required
