@@ -1,19 +1,19 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block 'title' %}Detalhes da Campanha{% endblock %}
 
 {% block 'conteudo' %}
 <div class="geral">
-    <main class="campanha">
+    <div class="campanha">
         <h2>{{campanha.nome_campanha}}</h2>
         <img src="{{campanha.imagem_de_capa.url}}" alt="foto_de_imagem" width="400"><br>
         <p>Data de início:{{campanha.data_inicio}}</p>
         <p>Data de fim: {{campanha.data_fim}}</p>
         <p>Descrição:{{campanha.descricao}}</p>
         
-    </main >
+    </div>
+    <div class="borda_sessoes">
     <div class="sessoes">
         <button class="botao-tema" onclick="mudar_sessao(-1)">&lt;</button>
         <h2 id="titulo_sessao" class="class_nome_da_campanha">SESSÃO 0</h2>
@@ -44,6 +44,7 @@
     
         </section>
         </article>
+    </div>
     </div>
 </div>
 

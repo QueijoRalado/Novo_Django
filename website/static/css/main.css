@@ -222,17 +222,20 @@ i.bi{
  /* Minhas Campanhas */
  .geral{
     display: flex;
+    flex-direction: column;
  }
  .campanha{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
  }
  .campanha img{
     border: 3px solid var(--cor-destaque);
     border-radius: 40px ;
     width: 400px;
+}
+.borda_sessoes{
+    border: 3px solid var(--cor-destaque);
 }
 
  /* Minhas Campanhas */
