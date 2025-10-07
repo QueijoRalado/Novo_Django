@@ -6,7 +6,7 @@
    
       <h1 class="leta_gande">PLAYERS ADICIONADOS:</h1>
       <div class="butoes">
-         <button class="botao_criar_personagem" onclick="adicionarJogador()">ADICIONAR PLAYERS</button>
+         <button class="botao" onclick="adicionarJogador()">ADICIONAR PLAYERS</button>
       </div>
       <!-- Button trigger modal -->
 
@@ -66,9 +66,9 @@
                divJogador.setAttribute ('class', 'caixas_de_escolha_players')
                const divAddJogador = document.createElement("div");
                divAddJogador.innerHTML= `<h2>
-                <button class="margin_botao_deletar botao_criar_personagem" onclick="excluirJogador('${nome_player}')"><i class="bi bi-trash"></i></button>
+                <button class="margin_botao_deletar botao" onclick="excluirJogador('${nome_player}')"><i class="bi bi-trash"></i></button>
                 ${nome_player.toUpperCase().replaceAll("_"," ")}
-                <button type="button" class="btn btn-primary botao_criar_personagem margin_botao_editar" onclick="abrirModalAddPersonagem('${nome_player}')" >
+                <button type="button" class="btn btn-primary botao margin_botao_editar" onclick="abrirModalAddPersonagem('${nome_player}')" >
                <i class="bi bi-plus-lg"></i>
                </button> 
                </h2>
@@ -84,9 +84,9 @@
                  
                    divPersonagensJogador.innerHTML = `
                      <section id class="chops">
-                     <button class="margin_botao_deletar botao_criar_personagem" onclick=excluirPersonagem('${nome_player}','${nome_personagem}'); ><i class="bi bi-trash"></i></button>
+                     <button class="margin_botao_deletar botao" onclick=excluirPersonagem('${nome_player}','${nome_personagem}'); ><i class="bi bi-trash"></i></button>
                      <h2>${nome_personagem.replaceAll("_"," ")}</h2> <h2>(${nome_player.replaceAll("_"," ")})</h2>
-                     <button class="margin_botao_editar botao_criar_personagem" onclick=editarPersonagem('${nome_player}','${nome_personagem}'); ><i class="bi bi-pencil-fill"></i></button>
+                     <button class="margin_botao_editar botao" onclick=editarPersonagem('${nome_player}','${nome_personagem}'); ><i class="bi bi-pencil-fill"></i></button>
          
                      </section>
 
@@ -236,9 +236,9 @@
                const divAddJogador = document.createElement("div");
                divAddJogador.innerHTML= `
                   <section id class="chops">
-                  <button class="margin_botao_deletar botao_criar_personagem" onclick=excluirJogador('${nome}'); ><i class="bi bi-trash"></i></button>
+                  <button class="margin_botao_deletar botao" onclick=excluirJogador('${nome}'); ><i class="bi bi-trash"></i></button>
                   <h2>${nome.replaceAll("_"," ")}</h2>
-                  <button class="margin_botao_editar botao_criar_personagem" onclick=abrirModalAddPersonagem('${nome}'); ><i class="bi bi-plus-lg"></i></button>
+                  <button class="margin_botao_editar botao" onclick=abrirModalAddPersonagem('${nome}'); ><i class="bi bi-plus-lg"></i></button>
                   </section>
                `
                divJogador.appendChild(divAddJogador);
@@ -259,9 +259,9 @@
                   const divAddJogador = document.createElement("div");
                   divAddJogador.innerHTML= `
                      <section id class="chops">
-                     <button class="margin_botao_deletar botao_criar_personagem" onclick=excluirJogador('${nome}'); ><i class="bi bi-trash"></i></button>
+                     <button class="margin_botao_deletar botao" onclick=excluirJogador('${nome}'); ><i class="bi bi-trash"></i></button>
                      <h2>${nome.replaceAll("_"," ")}</h2>
-                     <button class="margin_botao_editar botao_criar_personagem" onclick=abrirModalAddPersonagem('${nome}'); ><i class="bi bi-plus-lg"></i></button>
+                     <button class="margin_botao_editar botao" onclick=abrirModalAddPersonagem('${nome}'); ><i class="bi bi-plus-lg"></i></button>
          
                      </section>
                   `

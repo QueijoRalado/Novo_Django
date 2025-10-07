@@ -5,17 +5,17 @@
 {% block 'title' %}Meus Personagens::{{ user.username }}{% endblock %}
 {% block 'conteudo' %}
 <h1>MEUS PERSONAGENS</h1>
-<div>
+<div class="pesquisar">
   <form method="post"> {% csrf_token %}
-    <input  id="pesquisa" type="text" placeholder="PESQUISAR" class="pergunta" name="pesquisar_personagem" value="{{pesquisa}}">
-    <input class="botao_criar_personagem" type="submit" value="PESQUISAR">
+    <input  id="pesquisa" type="text" placeholder="" class="pergunta" name="pesquisar_personagem" value="{{pesquisa}}">
+    <input class="botao" type="submit" value="PESQUISAR">
   </form>
   </div>
 <div class="container text-center lista_personagens">
-  <div class="row">
-    {% for p in personagens %}      
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    {% for p in personagens %}
     <div class="col">
-      <div class="card" style="width: 18rem;">
+      <div class="card h-100 d-flex flex-column" style="width: 18rem;">
             <img src="{{p.avatar_personagem.url}}" class="card-img-top" alt="...">
             <div class="card-body ">
                 <h5 class="card-title">{{p.nome_personagem}}</h5>
@@ -28,7 +28,7 @@
     </div>
     {% endfor%}
   </div>
-  <a href="{% url 'cadastrar_personagem' %}" class="botao_criar_personagem">Cadastrar novo personagem</a>
+  <a href="{% url 'cadastrar_personagem' %}" class="botao">Cadastrar novo personagem</a>
 </div>
 
 
