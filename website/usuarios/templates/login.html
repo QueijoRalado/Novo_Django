@@ -6,12 +6,35 @@
     {% if erro %}<p style="color:red;">{{ erro }}</p>{% endif %}
     <form class="formulario" method="post">
         {% csrf_token %}
-        <label>Usuário:</label>
+        <div class="col-12">
+              <label for="username" class="form-label">Nome de usuário</label> 
+              <div class="input-group has-validation">
+                  <input type="text" class="form-control" name="username" id="username"required> 
+                  <div class="invalid-feedback">
+                      Your username is required.
+                  </div>
+              </div>
+          </div>
+          <br>
+          <br>
+          <div class="col-12">
+              <label for="username" class="form-label">Senha</label> 
+              <div class="input-group has-validation">
+                  <input type="text" class="form-control" name="username" id="username"required> 
+                  <div class="invalid-feedback">
+                      Your username is required.
+                  </div>
+              </div>
+          </div>  
+          <br>
+        <!-- <label>Usuário:</label>
         <input class="pergunta" type="text" name="username"><br>
         <label>Senha:</label>
-        <input class="pergunta" type="password" name="password"><br>
+        <input class="pergunta" type="password" name="password"><br> -->
         <button class="botao_criar_personagem" type="submit">Entrar</button>
-        <a href="{% url 'accounts:cadastro' %}">Criar conta</a>
+        <br>
+        <br>
+        <p class="letra_pequena">Ainda não tem uma conta? <a href="{% url 'accounts:cadastro' %}">Crie uma conta!</a></p>
     </form>
     
 {% endblock %}

@@ -11,7 +11,12 @@ body{
 }
 
 /* --- Toda essa parte engloba o nosso menu --- */
-
+nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 5px var(--cor-destaque) solid;
+}
 .entrada{
     justify-content: space-evenly;
     align-items: center;
@@ -25,6 +30,7 @@ body{
     width: 60%;
     
 }
+
 .oqueRPG{
     display: flex;
     justify-content: space-evenly;
@@ -45,6 +51,35 @@ body{
 .fichainfos p{
     padding: 20px;
 }
+@media (max-width: 1000px){
+    .entrada{
+        flex-direction: column;
+
+    }
+    .oqueRPG{
+        flex-direction: column;
+    }
+    .oqueRPG p{
+        width: 100%;
+        font-size: large;
+    }
+    .oqueRPG img{
+        width: 100%;
+    }
+}
+@media (min-width: 1001px) and (max-width: 1200px){
+    .entrada{
+        flex-direction: column;
+
+    }
+    .oqueRPG p{
+        width: 50%;
+        font-size: x-large;
+    }
+    .oqueRPG img{
+        width: 50%;
+    }
+}
 ul{
     display: flex;
     list-style: none;
@@ -59,6 +94,33 @@ ul{
 .grimoriobonito{
     width: 70px;
 }
+
+/* Essa parte serve para o menu mobile (funciona ao clicar no grimório) */
+@media (max-width: 2000px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: var(--cor-fundo);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+       
+    }
+   
+    .nav-links.active {
+        display: flex;
+        z-index: 999;
+    }
+    .menu-icon {
+        display: block;    
+    }
+ }
+
+
+
+
  /* Parte da área restrita */
 
  .perfil{
@@ -72,7 +134,7 @@ ul{
     width: 300px;
     
 }
-#descricao_perfil{
+#corovenha{
     background-color: transparent;
     color: var(--cor-texto);
     border-color: var(--cor-destaque);
@@ -83,13 +145,13 @@ ul{
     display: flex;
     flex-direction: column;
 }
-.campanhas_personagens_perfil{
+.ascoisadele{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     padding: 30px;
 }
-.campanhas_personagens_perfil div{
+.ascoisadele div{
     text-align: center;
 }
 i.bi{
@@ -97,8 +159,27 @@ i.bi{
     color: var(--cor-texto);
     cursor: pointer;
 }
+@media (max-width: 1000px){
+    .perfil{
+        flex-direction: column;
+        align-items: center;
+    }
+    #corovenha{
+        width: 100%;
+    }
+}
+@media (min-width: 1001px) and (max-width: 1450px){
+    .perfil{
+        flex-direction: column;
+        align-items: center;
+    }
+    #corovenha{
+        width: 100%;
+    }
+}
 
 
+/* Essa parte serve para o menu mobile (funciona ao clicar no grimório) */
  /* Fim da área restrita */
 
  /* Meus Personagens */
@@ -108,8 +189,10 @@ i.bi{
 
 .formulario{
     text-align: center;
-    border: 3px solid var(--cor-destaque);
-    border-radius: 40px ;
+    margin: 30px;
+    padding-left: 30%;
+    padding-right: 30%;
+    
 }
 .pergunta{
     border-radius: 10px;
@@ -117,14 +200,9 @@ i.bi{
     border: 1px solid var(--cor-destaque);
     margin: 10px;
     color: var(--cor-texto);
-    width: 400px;
 }
 .lista_personagens .card-body{
     background-color: var(--cor-destaque);
-}
-.alinhamento_personagens{
-    display: flex;
-    justify-content: space-between;
 }
 .personagem{
     display: flex;
@@ -144,18 +222,53 @@ i.bi{
  /* Minhas Campanhas */
  .geral{
     display: flex;
+    flex-direction: column;
  }
  .campanha{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
  }
  .campanha img{
     border: 3px solid var(--cor-destaque);
     border-radius: 40px ;
     width: 400px;
 }
+.borda_sessoes{
+    border: 3px solid var(--cor-destaque);
+}
+
+ /* Minhas Campanhas */
+
+
+/* --- Aqui, nós mexemos com a página de campanhas ---*/
+/* 
+.anunciante_campanhas{
+    text-align: center;
+    text-decoration: underline;
+    color: var(--cor-destaque);
+}
+.campanhas{
+    display: flex;
+    flex-direction: column;
+    text-decoration: underline var(--cor-destaque);
+}
+.campanhas .caixa_da_campanha{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor-fundo);
+    color: var(--cor-destaque);
+    border-style: solid;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 30px;
+}
+.campanhas .caixa_da_campanha button{
+    width: 70px;
+    text-decoration: underline white
+} */
+
+/* --- Aqui temos a campanha individual, onde mostramos o título, a descrição, o ínico, o fim, e os players que participam da campanha tudo na mesma página --- */
 
 /* Imagem da Campanha */
 
@@ -170,6 +283,13 @@ i.bi{
     border: 3px solid var(--cor-destaque);
 }
 
+@media only screen and (min-width: 600px) {
+    .borda_img_da_campanha{
+        max-width:50%;
+    }
+  }
+
+
 /* Informações Gerais da Campanha */
 
 .class_nome_da_campanha{
@@ -178,6 +298,15 @@ i.bi{
 }
 .class_desc_da_campanha{
     color: var(--cor-texto);
+}
+.inicio_fim{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 75px;
 }
 /* --- Seção das Sessões (quase rimou) --- */
 
@@ -190,6 +319,17 @@ i.bi{
     flex-direction: row;
     gap: 250px;
 }
+@media only screen and (max-width: 600px) {
+    .cenas_descricao{
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        align-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 100px;
+    }
+  }
 .borda_cenas_descricao{
     border: 5px solid var(--cor-destaque);
     padding: 10px;  
@@ -243,15 +383,10 @@ th, td {
     justify-content: center;
 }
 /* --- Lista de Jogadores e Personagens --- */
-
-/* .butoes{
-    color: var(--cor-texto);
-    background-color: var(--cor-destaque);
-    border-color: var(--cor-destaque);
-    border-radius: 5px;
-    border-style: none;
+.butoes{
+    display: flex;
+    justify-content: center;
 }
-
 .botao-tema {
     background-color: var(--cor-destaque);
     color: white;
@@ -261,135 +396,25 @@ th, td {
     font-weight: bold;
     margin: 20px;
     border-radius: 20px;
-} */
-
-.botao{
-    display: flex;
-    justify-content: center;
-    padding: 10px 20px;
-    font-weight: bold;
+}
+.botao_criar_personagem{
     color: var(--cor-texto);
     background-color: var(--cor-destaque);
     border-color: var(--cor-destaque);
     border-radius: 5px;
     border-style: none;
     --bs-btn-hover-bg: var(--cor-destaque);
-    margin: 50px;
 }
-.pesquisar{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
+.margin_botao_deletar{
+    margin-right: 30px;
 }
-
-/* --- Mobile do Site --- */
-
-/* Menu (Hamburguinho) */
-
-@media (max-width: 2000px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        background-color: var(--cor-fundo);
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 10px;
-       
-    }
-   
-    .nav-links.active {
-        display: flex;
-        z-index: 999;
-    }
-    .menu-icon {
-        display: block;    
-    }
+.margin_botao_editar{
+    margin-left: 30px;
 }
-
-/* Home */
-
-@media (max-width: 1000px){
-    .entrada{
-        flex-direction: column;
-
-    }
-    .oqueRPG{
-        flex-direction: column;
-    }
-    .oqueRPG p{
-        width: 100%;
-        font-size: large;
-    }
-    .oqueRPG img{
-        width: 100%;
-    }
-}
-@media (min-width: 1001px) and (max-width: 1200px){
-    .entrada{
-        flex-direction: column;
-
-    }
-    .oqueRPG p{
-        width: 50%;
-        font-size: x-large;
-    }
-    .oqueRPG img{
-        width: 50%;
-    }
-}
-
-/* Perfil do Usuário */
-
-@media (max-width: 1000px){
-    .perfil{
-        flex-direction: column;
-        align-items: center;
-    }
-    #corovenha{
-        width: 100%;
-    }
-}
-@media (min-width: 1001px) and (max-width: 1450px){
-    .perfil{
-        flex-direction: column;
-        align-items: center;
-    }
-    #corovenha{
-        width: 100%;
-    }
-}
-
-/* Borda da Imagem da Campanha */
-
-@media only screen and (min-width: 600px) {
-    .borda_img_da_campanha{
-        max-width:50%;
-    }
-}
-
-/* Descrição da Cena */
-
-@media only screen and (max-width: 600px) {
-    .cenas_descricao{
-        display: flex;
-        justify-content: center;
-        justify-items: center;
-        align-content: space-between;
-        flex-wrap: wrap;
-        flex-direction: row;
-        gap: 100px;
-    }
-}
-
 /* --- Classes Gerais e Funcionalidades Adicionais --- */
 
-nav{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    border-bottom: 5px var(--cor-destaque) solid;
+.pagina_atual{
+    text-decoration: underline var(--cor-destaque);
 }
 h1{
     text-align: center;

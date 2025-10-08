@@ -1,11 +1,10 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block 'title' %}Detalhes da Campanha{% endblock %}
 
 {% block 'conteudo' %}
-<div class="geral row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+<div class="geral">
     <div class="campanha">
         <h2>{{campanha.nome_campanha}}</h2>
         <img src="{{campanha.imagem_de_capa.url}}" alt="foto_de_imagem" width="400"><br>
@@ -16,19 +15,19 @@
     </div>
     <div class="borda_sessoes">
     <div class="sessoes">
-        <button class="botao" onclick="mudar_sessao(-1)">&lt;</button>
+        <button class="botao-tema" onclick="mudar_sessao(-1)">&lt;</button>
         <h2 id="titulo_sessao" class="class_nome_da_campanha">SESSÃO 0</h2>
-        <button class="botao" onclick="mudar_sessao(1)">&gt;</button>
+        <button class="botao-tema" onclick="mudar_sessao(1)">&gt;</button>
     </div>
     <div class="sessoes">
-        <button class="botao" onclick="criar_sessao()">Criar Sessão</button>
+        <button class="botao-tema" onclick="criar_sessao()">Criar Sessão</button>
     </div>
     
     <div>
         <article class="cenas_descricao">
             <section class="gordura_da_cena">
                 <h3 class="letra_grande">CENAS</h3>
-                <button class="botao" id="id_criar_cena">CRIAR CENA</button><br><br>
+                <button class="botao-tema" id="id_criar_cena">CRIAR CENA</button><br><br>
                 <div id="id_cenas">
         </div>
         </section>
@@ -54,74 +53,5 @@
 <a href="{% url 'editar_campanha' campanha.id %}" class="btn btn-warning">Editar</a>
 <a href="{% url 'excluir_campanha' campanha.id %}" class="btn btn-danger">Deletar</a>
 <a href="{% url 'minhas_campanhas' %}" class="btn btn-secondary">Voltar</a>
-<script>
-    const campanha =  JSON.parse(localStorage.getItem("campanha_selecionada"));
-    const campanha_escolhida = campanha.nome.toLowerCase()
-    const campanha_ = campanha_escolhida.replace(" ", "_")
-    let dados = JSON.parse(localStorage.getItem(`sessoes_rpg_${campanha_}`)) || [];
-    let sessao_atual = 0;
-    let cena_selecionada = 0;
-
-    function salvar_dados() {
-        localStorage.setItem(`sessoes_rpg_${campanha_}`, JSON.stringify(dados));
-    }
-
-    function atualizar_interface() {
-        document.getElementById('titulo_sessao').textContent = `SESSÃO ${sessao_atual}`;
-        const lista_cenas = document.getElementById('id_cenas');
-        lista_cenas.innerHTML = '';
-
-        if (!dados[sessao_atual]) dados[sessao_atual] = [];
-        dados[sessao_atual].forEach((cena, index) => {
-            const p = document.createElement('div');
-            p.className = 'borda_cenas_descricao';
-            p.textContent = `Cena ${index + 1}`;
-            p.onclick = () => selecionar_cena(index);
-            lista_cenas.appendChild(p);
-        });
-
-        selecionar_cena(cena_selecionada);
-    }
-
-    function criar_sessao() {
-        if (dados.length >= 50) return alert('Limite de 50 sessões atingido!');
-        dados.push([]);
-        sessao_atual = dados.length - 1;
-        cena_selecionada = 0;
-        salvar_dados();
-        atualizar_interface();
-    }
-
-    function criar_cena() {
-        if (dados[sessao_atual].length >= 15) return alert('Limite de 15 cenas atingido!');
-        dados[sessao_atual].push("");
-        cena_selecionada = dados[sessao_atual].length - 1;
-        salvar_dados();
-        atualizar_interface();
-    }                                                                                                                                                                                                                      3
-
-    function selecionar_cena(index) {
-        cena_selecionada = index;
-        document.getElementById('cena_atual_titulo').textContent = `Cena ${index + 1}`;
-        document.getElementById('descricao_cena').value = dados[sessao_atual][index] || '';
-    }
-
-    function mudar_sessao(direcao) {
-        const nova_sessao = sessao_atual + direcao;
-        if (nova_sessao >= 0 && nova_sessao < dados.length) {
-            sessao_atual = nova_sessao;
-            cena_selecionada = 0;
-            atualizar_interface();
-        }
-    }
-
-    atualizar_interface();
-    document.getElementById("descricao_cena").addEventListener("input", () => {
-    dados[sessao_atual][cena_selecionada] = document.getElementById("descricao_cena").value;
-    salvar_dados();
-    });
-
-    document.getElementById("id_criar_cena").addEventListener("click", criar_cena);
-</script>
 
 {% endblock %}
