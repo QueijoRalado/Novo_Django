@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roladas </title>
+    <style>
+        #container{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        button{
+            font-size: 1.5rem;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(44, 173, 248);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: rgb(89, 191, 250);
+        }
+        button:active{
+            background-color: rgb(135, 206, 247);
+        }
+        input{
+            font-size: 2rem;
+            width: 150px;
+            font-weight: bold;
+            text-align: center;
+        }
+        img{cursor: pointer;}
+        img:hover{
+            background-color: cadetblue;
+            border-radius: 10px;
+        }
+        #dados{
+            
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <h1>Rolagem de dados</h1>
+        <div id="dados">
+            <img onclick="Rolar(4)" src="/website/static/img/d4.png" width="100px" alt="">
+            <img onclick="Rolar(6)" src="/website/static/img/d6.png" width="100px" alt="">
+            <img onclick="Rolar(8)" src="/website/static/img/d8.png" width="100px" alt="">
+            <img onclick="Rolar(10)" src="/website/static/img/d10.svg" width="100px" alt="">
+            <img onclick="Rolar(12)" src="/website/static/img/d12.png" width="100px" alt="">
+            <img onclick="Rolar(20)" src="/website/static/img/d20.png" width="100px" alt="">
+        </div>
+        
+        <label for="numero_de_dados">N. de dados</label>
+        <input type="number" id="numero_de_dados" value="1" min="1" max="40"></input>
+        <div id="resultado_do_dado"></div>
+        <div id="soma_dos_dados"></div>
+    </div>
+
+    <script>
+
+        
+        function Rolar(dado){
+            const numDeDados = document.getElementById('numero_de_dados').value;
+            const resultado = document.getElementById('resultado_do_dado');
+            const somaDosDados = document.getElementById('soma_dos_dados');
+            let somagem = 0
+            const valores = [];
+            if(numDeDados>40){
+                resultado.textContent = "O limite de dados é 40."
+                
+            }
+            else{
+                for(let i = 0; i < numDeDados; i++){
+                    const valor = Math.floor(Math.random() * dado) +1;
+                    valores.push(valor);
+                    somagem += valores[i];
+                }
+
+                resultado.textContent = `Dado(s): ${valores.join(', ')}`
+                somaDosDados.textContent =  `Soma: ${somagem}` 
+            }
+            
+        }
+    </script>
+</body>
+</html>
