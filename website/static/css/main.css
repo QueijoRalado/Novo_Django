@@ -31,8 +31,8 @@ nav{
     
 }
 .titulos_entrada{
-    margin-left: 40%;
-    margin-right: 40%;
+    margin-left: 45%;
+    margin-right: 45%;
     background-color: var(--cor-destaque);
     color: var(--cor-texto);
     padding-top: 5px;
@@ -51,8 +51,7 @@ nav{
     width: 600px;
 }
 .ficha_png{
-    width: 1000px !important;
-    
+    width: 1000px;  
 }
 .fichainfos{
     display: flex;
@@ -62,6 +61,11 @@ nav{
 .fichainfos p{
     padding: 20px;
 }
+.imagem_ferramentas_mestre{
+    width: 900px;
+    height: 400px;
+}
+
 @media (max-width: 1000px){
     .entrada{
         flex-direction: column;
@@ -75,10 +79,17 @@ nav{
         font-size: large;
     }
     .titulos_entrada{
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
     }
     .oqueRPG img{
+        width: 100%;
+    }
+    .ficha_png{
+        width: 100%;
+    }
+    
+    .imagem_ferramentas_mestre{
         width: 100%;
     }
 }
@@ -435,7 +446,7 @@ th, td {
     justify-content: center;
 }
 /* --- Lista de Jogadores e Personagens --- */
-.butoes{
+.botoes{
     display: flex;
     justify-content: center;
 }
