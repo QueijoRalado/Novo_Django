@@ -51,7 +51,8 @@ nav{
     width: 600px;
 }
 .ficha_png{
-    width: 1000px;
+    width: 1000px !important;
+    
 }
 .fichainfos{
     display: flex;
@@ -236,7 +237,7 @@ i.bi{
  /* Minhas Campanhas */
  .geral{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
  }
  .campanha{
     display: flex;
@@ -245,7 +246,7 @@ i.bi{
  }
  .campanha img{
     border: 3px solid var(--cor-destaque);
-    border-radius: 40px ;
+    border-radius: 40px;
     width: 400px;
 }
 .borda_sessoes{
@@ -322,6 +323,43 @@ i.bi{
     flex-direction: row;
     gap: 75px;
 }
+
+/* Minhas Campanhas */
+.geral{
+    display: flex;
+ }
+ #botoes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+ }
+ .campanha{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    
+ }
+ .campanha img{
+    border: 3px solid var(--cor-destaque);
+    border-radius: 40px ;
+    width: 400px;
+}
+#container{
+    color: var(--cor-texto);
+    border: var(--cor-destaque) solid 2px ;
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+#container img{
+    background-color: var(--cor-destaque);
+    border-radius: 10px;
+    margin: 0;
+}
+
 /* --- Seção das Sessões (quase rimou) --- */
 
 .cenas_descricao{
