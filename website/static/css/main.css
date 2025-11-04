@@ -113,6 +113,7 @@ ul{
     gap: 50px;
     font-size: x-large;
     padding: 0;
+
 }
 .dado20{
     width: 70px;
@@ -532,4 +533,8 @@ label{
 
 span{
     color: var(--cor-texto);
+}
+
+.deu_certo{
+    display: flex;
 }
